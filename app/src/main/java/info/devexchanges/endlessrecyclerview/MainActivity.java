@@ -13,7 +13,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private List<Contact> contacts;
     private ContactAdapter contactAdapter;
     private Random random;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //find view by id and attaching adapter for the RecyclerView
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         contactAdapter = new ContactAdapter(recyclerView, contacts, this);

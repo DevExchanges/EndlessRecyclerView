@@ -15,7 +15,7 @@ import java.util.List;
 public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
-    private OnLoadMoreListener mOnLoadMoreListener;
+    private OnLoadMoreListener onLoadMoreListener;
     private boolean isLoading;
     private Activity activity;
     private List<Contact> contacts;
@@ -34,8 +34,8 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 totalItemCount = linearLayoutManager.getItemCount();
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-                    if (mOnLoadMoreListener != null) {
-                        mOnLoadMoreListener.onLoadMore();
+                    if (onLoadMoreListener != null) {
+                        onLoadMoreListener.onLoadMore();
                     }
                     isLoading = true;
                 }
@@ -44,7 +44,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
-        this.mOnLoadMoreListener = mOnLoadMoreListener;
+        this.onLoadMoreListener = mOnLoadMoreListener;
     }
 
     @Override
@@ -89,9 +89,9 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private class LoadingViewHolder extends RecyclerView.ViewHolder {
         public ProgressBar progressBar;
 
-        public LoadingViewHolder(View itemView) {
-            super(itemView);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar1);
+        public LoadingViewHolder(View view) {
+            super(view);
+            progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
         }
     }
 
@@ -99,10 +99,10 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView phone;
         public TextView email;
 
-        public UserViewHolder(View itemView) {
-            super(itemView);
-            phone = (TextView) itemView.findViewById(R.id.txt_phone);
-            email = (TextView) itemView.findViewById(R.id.txt_email);
+        public UserViewHolder(View view) {
+            super(view);
+            phone = (TextView) view.findViewById(R.id.txt_phone);
+            email = (TextView) view.findViewById(R.id.txt_email);
         }
     }
 }
